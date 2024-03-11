@@ -52,11 +52,17 @@ public class EventsController {
 
 
     @PutMapping("/change/{id}/{capacity}")
+    
+    public ResponseEntity chang(@PathVariable int id ,@PathVariable  int capacity ){
 
-    public ResponseEntity chang(@PathVariable int id ,@PathVariable @Valid @Min(value =25, message = "Capacity must be mor then 25") int capacity ){
+
+        if(capacity<25){
+            return ResponseEntity.status(400).body("Capacity must be more than 25");
+        }
 
         for (EventsModel event:eventss){
             if(event.getId()==id){
+
                 event.setCapacity(capacity);
             }
         }
