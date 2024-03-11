@@ -36,6 +36,18 @@ public class ProjectController {
         projects.set(index,project);
         return ResponseEntity.status(200).body("Updated");
     }
+
+  @PutMapping("/change/status/{index}")
+
+    public ResponseEntity status(@PathVariable int index){
+        if (projects.get(index).getStatus().equalsIgnoreCase("Not Started")){
+            projects.get(index).setStatus("In Progress");
+            return ResponseEntity.status(200).body("Changed");
+        }
+        else if(projects.get(index).getStatus().equalsIgnoreCase("In Progress"))
+            projects.get(index).setStatus("Completed)");
+        return ResponseEntity.status(200).body("Changed");
+    }
     @DeleteMapping("/delete/{index}")
 
     public ResponseEntity delete(@PathVariable int index){
